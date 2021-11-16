@@ -1,0 +1,25 @@
+[user]
+	name = <Your Name>
+	email = <Your Email>
+[core]
+	autocrlf = false
+[alias]
+	stash-unapply = !git stash show -p | git apply -R
+	co = checkout
+	s = status
+	l = log --oneline
+	c = commit -am \"Update implementation\"
+	xc = reset HEAD^1
+	u = !git um && git pull origin master
+	d = diff
+	p = push origin HEAD
+	um = pull origin master:master
+	f = fetch
+	current = rev-parse --abbrev-ref HEAD
+	uo = !CURRENT=$(git current) && git pull origin $CURRENT
+	i = !git uo && git u
+	cls = commit -am 'Cleanup [skip ci]'
+	cl = commit -am 'Cleanup'
+	lmsg = log --format=%B -n 1
+	sci = !CMSG="$(git lmsg)" && CMSG+="\" [skip ci]\"" && git commit --amend --no-edit -m "\"$CMSG\""
+	cs = commit -am \"Update implementation [skip ci]\"
