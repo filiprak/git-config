@@ -9,6 +9,8 @@
 	s = status
 	l = log --oneline
 	c = commit -am \"Update implementation\"
+	dc = commit -am \"Update documentation\"
+	dcs = commit -am \"Update documentation [skip ci]\"
 	xc = reset HEAD^1
 	u = !git um && git pull origin master
 	d = diff
