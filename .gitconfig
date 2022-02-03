@@ -23,5 +23,5 @@
 	cls = commit -am 'Cleanup [skip ci]'
 	cl = commit -am 'Cleanup'
 	lmsg = log --format=%B -n 1
-	sci = !CMSG="$(git lmsg)" && CMSG+="\" [skip ci]\"" && git commit --amend --no-edit -m "\"$CMSG\""
+	sci = !CMSG="\"$(git lmsg) [skip ci]\"" && git commit --amend --no-edit -m "\"$CMSG\""
 	cs = commit -am \"Update implementation [skip ci]\"
