@@ -5,10 +5,10 @@
 	autocrlf = false
 [alias]
 	stash-unapply = !git stash show -p | git apply -R
-	co = checkout
+	c = !sh -c \"git branch -a | grep -v remotes | grep $1 | head -n 1 | xargs git checkout\"
 	s = status
 	l = log --oneline
-	c = commit -am \"Update implementation\"
+	co = commit -am \"Update implementation\"
 	dc = commit -am \"Update documentation\"
 	dcs = commit -am \"Update documentation [skip ci]\"
 	xc = reset HEAD^1
@@ -25,3 +25,4 @@
 	lmsg = log --format=%B -n 1
 	sci = !CMSG="\"$(git lmsg) [skip ci]\"" && git commit --amend --no-edit -m "\"$CMSG\""
 	cs = commit -am \"Update implementation [skip ci]\"
+	m = checkout master
