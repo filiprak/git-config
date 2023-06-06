@@ -5,7 +5,7 @@
 	autocrlf = false
 [alias]
 	stash-unapply = !git stash show -p | git apply -R
-	c = !sh -c \"git branch -a | grep -v remotes | grep $1 | head -n 1 | xargs git checkout\"
+	c = !sh -c \"git branch -a | grep $1 | sed 's/remotes\\/origin\\///g' | head -n 1 | xargs git checkout\"
 	s = status
 	l = log --oneline
 	co = commit -am \"Update implementation\"
