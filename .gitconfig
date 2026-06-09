@@ -5,12 +5,12 @@
 	autocrlf = false
 [alias]
 	stash-unapply = !git stash show -p | git apply -R
-	c = !sh -c \"git branch -a | grep $1 | sed 's/remotes\\/origin\\///g' | head -n 1 | xargs git checkout\"
+	c = commit
+	cl = !SKIP_HOOKS=1 git commit -am 'Work in progress'
+	cls = !SKIP_HOOKS=1 git commit -am 'Work in progress [skip ci]'
+	i = !git uo && git u
 	s = status
 	l = log --oneline
-	co = commit -am \"Update implementation\"
-	dc = commit -am \"Update documentation\"
-	dcs = commit -am \"Update documentation [skip ci]\"
 	xc = reset HEAD^1
 	u = !git um && git pull origin master
 	d = diff
@@ -19,10 +19,6 @@
 	f = fetch
 	current = rev-parse --abbrev-ref HEAD
 	uo = !CURRENT=$(git current) && git pull origin $CURRENT
-	i = !git uo && git u
-	cls = commit -am 'Cleanup [skip ci]'
-	cl = commit -am 'Cleanup'
 	lmsg = log --format=%B -n 1
 	sci = !CMSG="\"$(git lmsg) [skip ci]\"" && git commit --amend --no-edit -m "\"$CMSG\""
-	cs = commit -am \"Update implementation [skip ci]\"
 	m = checkout master
