@@ -20,5 +20,5 @@
 	current = rev-parse --abbrev-ref HEAD
 	uo = !CURRENT=$(git current) && git pull origin $CURRENT
 	lmsg = log --format=%B -n 1
-	sci = !CMSG="\"$(git lmsg) [skip ci]\"" && git commit --amend --no-edit -m "\"$CMSG\""
+	sci = !CMSG="\"$(git lmsg) [skip ci]\"" && SKIP_HOOKS=1 git commit --amend --no-edit -m "\"$CMSG\""
 	m = checkout master
