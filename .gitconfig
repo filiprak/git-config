@@ -6,8 +6,10 @@
 [alias]
 	stash-unapply = !git stash show -p | git apply -R
 	c = commit
-	cl = !SKIP_HOOKS=1 git commit -am 'Work in progress'
-	cls = !SKIP_HOOKS=1 git commit -am 'Work in progress [skip ci]'
+	cl = !SKIP_HOOKS=1 git commit -am 'chore: cleanup implementation'
+	w = !SKIP_HOOKS=1 git commit -am 'chore: work in progress'
+	ws = !SKIP_HOOKS=1 git commit -am 'chore: work in progress [skip ci]'
+	cls = !SKIP_HOOKS=1 git commit -am 'chore: cleanup implementation [skip ci]'
 	i = !git uo && git u
 	s = status
 	l = log --oneline
@@ -22,3 +24,5 @@
 	lmsg = log --format=%B -n 1
 	sci = !CMSG="\"$(git lmsg) [skip ci]\"" && SKIP_HOOKS=1 git commit --amend --no-edit -m "\"$CMSG\""
 	m = checkout master
+    mm = !git checkout master && git pull origin master && echo '>>> Resetting via ssh to master' && ssh user@example.com 'cd ~/www && git fetch origin && git checkout -- . && git clean -fd && git checkout master && git reset --hard origin/master && git pull origin master'
+	bb = "!f() { BRANCH=$(git branch --show-current) && echo \">>> Resetting via ssh to $BRANCH\" && ssh user@example.com 'cd ~/www && git fetch origin && git checkout -- . && git clean -fd && git checkout '\"$BRANCH\"' && git reset --hard origin/'\"$BRANCH\"' && git pull origin '\"$BRANCH\"''; }; f"
